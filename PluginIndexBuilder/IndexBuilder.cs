@@ -93,7 +93,9 @@ namespace Chorizite.PluginIndexBuilder {
                 <tr>
                     <td>{release.Name}</td>
                     <td>{release.Author}</td>
+                    <td><a href="{release.RepoUrl}" target="_blank">GitHub</a></td>
                     <td>{release.Latest.Date.ToString("yyyy-MM-dd")}</td>
+                    <td>{release.Description}</td>
                     <td>
                         <a href="{release.Latest?.DownloadUrl}">{release.Name}.{release.Latest?.Version}.zip</a>
                         (<a href="./plugins/{release.Name}.json">json</a>)
@@ -119,7 +121,9 @@ namespace Chorizite.PluginIndexBuilder {
                 <tr>
                     <th>Plugin Name</th>
                     <th>Author</th>
+                    <th>Repo</th>
                     <th>Updated</th>
+                    <th>Description</th>
                     <th>Download</th>
                 </tr>
             </thead>
