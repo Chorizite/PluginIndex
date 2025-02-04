@@ -1,6 +1,6 @@
 {
-  "repositories": [
-    "https://github.com/Chorizite/CoreTestPlugin",
-    "https://github.com/trevis/TestPlugin"
-  ]
+  "repositories": {
+    "CoreTestPlugin": "https://github.com/Chorizite/CoreTestPlugin",
+    "TestPlugin": "https://github.com/trevis/TestPlugin"
+  }
 }

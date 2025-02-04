@@ -31,13 +31,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Build Plugin Index
+        run: |
+          # build
+          cd "${{ github.workspace }}/PluginIndexBuilder"
+          dotnet restore
+          dotnet build -c Release --no-restore
+          cd "${{ github.workspace }}"
+          dotnet "${{ github.workspace }}/PluginIndexBuilder/bin/Release/net8.0/Chorizite.PluginIndexBuilder.dll" -o site -v repositories.json
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: '.'
+          path: 'site'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

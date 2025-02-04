@@ -1,0 +1,1 @@
+﻿# Chorizite PluginIndex Builder Tool
