@@ -14,8 +14,8 @@ namespace Chorizite.PluginIndexBuilder {
         private Options options;
         private List<RespositoryInfo> respositories = [];
 
-        internal static string GithubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN");
-        internal static string GithubUser = Environment.GetEnvironmentVariable("GITHUB_USER");
+        internal static string GithubToken = Environment.GetEnvironmentVariable("GITHUB_TOKEN") ?? Environment.GetEnvironmentVariable("GH_TOKEN");
+        internal static string GithubUser = Environment.GetEnvironmentVariable("GITHUB_USER") ?? Environment.GetEnvironmentVariable("GH_USER");
 
         internal static ConcurrentBag<string> AddedPlugins = [];
 
