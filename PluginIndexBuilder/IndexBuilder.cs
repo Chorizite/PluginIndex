@@ -47,12 +47,18 @@ namespace Chorizite.PluginIndexBuilder {
 
             Task.WhenAll(respositories.Select(r => r.Build())).Wait(60000 * 5);
 
-            var releaseResults = respositories.Where(r => r.Latest is not null).ToList();
-            var releaseJson = JsonSerializer.Serialize(releaseResults, new JsonSerializerOptions {
+            var releaseResults = respositories.Where(r => r.Latest is not null);
+            var releasesDict = new Dictionary<string, RespositoryInfo>();
+
+            foreach (var release in releaseResults) {
+                releasesDict[release.Name] = release;
+            }
+
+            var releaseJson = JsonSerializer.Serialize(releasesDict, new JsonSerializerOptions {
                 WriteIndented = true,
                 IncludeFields = false
             });
-            File.WriteAllText(Path.Combine(options.OutputDirectory, "releases.json"), releaseJson);
+            File.WriteAllText(Path.Combine(options.OutputDirectory, "index.json"), releaseJson);
 
             if (!Directory.Exists(Path.Combine(options.OutputDirectory, "plugins"))) {
                 Directory.CreateDirectory(Path.Combine(options.OutputDirectory, "plugins"));
@@ -69,7 +75,7 @@ namespace Chorizite.PluginIndexBuilder {
                 File.WriteAllText(repoJsonPath, repoJson);
             }
 
-            BuildHtml(releaseResults, Path.Combine(options.OutputDirectory, "index.html"));
+            BuildHtml(releasesDict.Values.ToList(), Path.Combine(options.OutputDirectory, "index.html"));
         }
 
         private void MakeDirectories() {
