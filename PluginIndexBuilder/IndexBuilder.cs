@@ -136,7 +136,7 @@ namespace Chorizite.PluginIndexBuilder {
             <tbody>
                 {body}
                 <br /><br />
-                <strong>Listing API: <a href="releases.json" target="_blank">releases.json</a></strong>
+                <strong>Listing API: <a href="index.json" target="_blank">index.json</a></strong>
             </tbody>
         </table>
     </body>
